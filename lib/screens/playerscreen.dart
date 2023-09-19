@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:music_app/services/song_operations.dart';
+import 'package:music_app/widgets/musicplayer.dart';
 
 class PlayerScreen extends StatefulWidget {
   const PlayerScreen({super.key});
@@ -9,8 +11,11 @@ class PlayerScreen extends StatefulWidget {
 
 class _PlayerScreenState extends State<PlayerScreen> {
   bool isFavorite = false;
+  // final List songs = SongOperations()();
+  final songs = SongOperations().songs;
   @override
   Widget build(BuildContext context) {
+    // print(songs);
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 12),
@@ -134,6 +139,14 @@ class _PlayerScreenState extends State<PlayerScreen> {
                     ],
                   ),
                 ],
+              ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: songs.length,
+                  itemBuilder: (context, index) {
+                    return MusicPlayer(song: songs[index]);
+                  },
+                ),
               )
             ],
           ),

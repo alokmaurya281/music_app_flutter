@@ -1,15 +1,15 @@
-import 'dart:ui';
+// import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:music_app/api/api_service.dart';
+// import 'package:music_app/api/api_service.dart';
 import 'package:music_app/screens/homescreen.dart';
 import 'package:music_app/screens/loginscreen.dart';
 import 'package:music_app/screens/playerscreen.dart';
 import 'package:music_app/screens/signupscreen.dart';
 
 void main() {
-  var url = '${endPoint}api/users';
-  fetchData(url);
+  // var url = '${endPoint}api/users';
+  // fetchData(url);
   runApp(const MyApp());
 }
 
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
           '/': (context) => const HomeScreen(),
           '/signup': (context) => const SignupScreen(),
           '/login': (context) => const LoginScreen(),
-          'player': (context) => const PlayerScreen()
+          '/player': (context) => const PlayerScreen()
         });
     //   debugShowCheckedModeBanner: false,
     //   title: 'Music App',

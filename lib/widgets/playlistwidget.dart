@@ -12,7 +12,7 @@ class _PlaylistWidgetState extends State<PlaylistWidget> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).pushNamed("player");
+        Navigator.of(context).pushNamed("/player");
       },
       child: Stack(
         children: [

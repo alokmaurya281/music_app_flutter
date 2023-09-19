@@ -15,7 +15,7 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController password = TextEditingController();
   String emailvalue = '';
   String passValue = '';
-  String _errMessage = '';
+  // String _errMessage = '';
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
 
   @override

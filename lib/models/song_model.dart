@@ -3,6 +3,7 @@ class Song {
   String artist;
   String album;
   String imageUrl;
+  String songUrl;
   Duration duration;
 
   Song({
@@ -10,6 +11,7 @@ class Song {
     required this.artist,
     required this.album,
     required this.imageUrl,
+    required this.songUrl,
     required this.duration,
   });
 }
