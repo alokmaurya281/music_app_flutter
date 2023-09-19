@@ -12,7 +12,7 @@ Future<void> fetchData(url) async {
     // Successful response, handle data
     
   } else {
-    // If that response was not OK, throw an error.
+    // If that response was not OK, throw an error
     throw Exception('Failed to load data');
   }
 }
