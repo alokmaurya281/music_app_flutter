@@ -51,12 +51,13 @@ class _HomeScreenState extends State<HomeScreen> {
       // extendBodyBehindAppBar: false,
       body: Container(
         height: double.infinity,
-        decoration: const BoxDecoration(
-          color: Color.fromRGBO(122, 81, 226, 1),
+        decoration: BoxDecoration(
+          color: const Color.fromRGBO(122, 81, 226, 1),
           gradient: LinearGradient(
             colors: [
-              Color.fromRGBO(122, 81, 226, 1),
-              Color.fromRGBO(22, 22, 22, 1)
+              Theme.of(context).colorScheme.primary,
+              Theme.of(context).colorScheme.secondary,
+              Theme.of(context).colorScheme.secondary
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,

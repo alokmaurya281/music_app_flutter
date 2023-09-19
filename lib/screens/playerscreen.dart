@@ -13,7 +13,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 30, horizontal: 12),
+        padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 12),
         height: double.infinity,
         decoration: const BoxDecoration(
           color: Color.fromRGBO(122, 81, 226, 1),
@@ -29,6 +29,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
         child: Padding(
           padding: const EdgeInsets.only(top: 24),
           child: Column(
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -36,7 +37,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                 children: [
                   IconButton(
                     onPressed: () {
-                      // Navigator.of(context).pop();
+                      Navigator.of(context).pop();
                     },
                     icon: const Icon(
                       Icons.arrow_back,
@@ -83,6 +84,57 @@ class _PlayerScreenState extends State<PlayerScreen> {
                   ),
                 ],
               ),
+              SizedBox(
+                width: 360,
+                height: 380,
+                child: Card(
+                  elevation: 5,
+                  semanticContainer: true,
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  child: Image.asset(
+                    "assets/images/song4.jpeg",
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Column(
+                    children: [
+                      Text(
+                        "Song Name",
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
+                      Text(
+                        "Singer name",
+                        style: TextStyle(color: Colors.white60, fontSize: 14),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      GestureDetector(
+                        child: const Icon(
+                          Icons.reply,
+                          size: 22,
+                          color: Colors.white60,
+                        ),
+                      ),
+                      GestureDetector(
+                        child: const Icon(
+                          Icons.more_horiz,
+                          size: 22,
+                          color: Colors.white60,
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              )
             ],
           ),
         ),
