@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:music_app/models/artist_model.dart';
 
-class PlaylistWidget extends StatefulWidget {
+class ArtistWidget extends StatefulWidget {
   final Artist artist;
-  const PlaylistWidget({
+  const ArtistWidget({
     super.key,
     required this.artist,
   });
 
   @override
-  State<PlaylistWidget> createState() => _PlaylistWidgetState();
+  State<ArtistWidget> createState() => _ArtistWidgetState();
 }
 
-class _PlaylistWidgetState extends State<PlaylistWidget> {
+class _ArtistWidgetState extends State<ArtistWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).pushNamed("/player");
+
       },
       child: Padding(
         padding: const EdgeInsets.only(right: 8),

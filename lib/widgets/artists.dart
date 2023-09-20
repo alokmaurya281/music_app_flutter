@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:music_app/services/artist_operations.dart';
 import 'package:music_app/services/song_operations.dart';
-import 'package:music_app/widgets/playlistwidget.dart';
+import 'package:music_app/widgets/artistwidget.dart';
 import 'package:music_app/widgets/songwidget.dart';
 
-class Playlist extends StatefulWidget {
-  const Playlist({super.key});
+class ArtistList extends StatefulWidget {
+  const ArtistList({super.key});
 
   @override
-  State<Playlist> createState() => _PlaylistState();
+  State<ArtistList> createState() => _ArtistListState();
 }
 
-class _PlaylistState extends State<Playlist> {
+class _ArtistListState extends State<ArtistList> {
   @override
   Widget build(BuildContext context) {
     final artists = ArtistOperations().artists;
@@ -34,7 +34,7 @@ class _PlaylistState extends State<Playlist> {
             scrollDirection: Axis.horizontal,
             itemCount: artists.length,
             itemBuilder: (context, index) {
-              return PlaylistWidget(artist: artists[index]);
+              return ArtistWidget(artist: artists[index]);
             },
           ),
         ),

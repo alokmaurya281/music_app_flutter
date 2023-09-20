@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:music_app/models/song_model.dart';
+import 'package:music_app/screens/playerscreen.dart';
 
 class SongWidget extends StatefulWidget {
   final Song song;
@@ -23,7 +24,12 @@ class _SongWidgetState extends State<SongWidget> {
         children: [
           GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, '/player');
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PlayerScreen(song: widget.song),
+                ),
+              );
             },
             child: Container(
               margin: const EdgeInsets.only(right: 8),

@@ -1,29 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:music_app/models/song_model.dart';
-import 'package:music_app/services/song_operations.dart';
-import 'package:music_app/widgets/bottomnavigation.dart';
-import 'package:music_app/widgets/musicplayer.dart';
 
-class PlayerScreen extends StatefulWidget {
-  // final Map<String, dynamic> song;
-  final Song song;
-  const PlayerScreen({
-    super.key,
-    required this.song,
-  });
+class ArtistScreen extends StatefulWidget {
+  const ArtistScreen({super.key});
 
   @override
-  State<PlayerScreen> createState() => _PlayerScreenState();
+  State<ArtistScreen> createState() => _ArtistScreenState();
 }
 
-class _PlayerScreenState extends State<PlayerScreen> {
-  bool isFavorite = false;
-  // final Song song =;
-  // final List songs = SongOperations().songs;
-  final songs = SongOperations().songs;
+class _ArtistScreenState extends State<ArtistScreen> {
   @override
   Widget build(BuildContext context) {
-    // print(songs);
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
@@ -43,7 +29,6 @@ class _PlayerScreenState extends State<PlayerScreen> {
         ),
         child: SingleChildScrollView(
           child: Column(
-            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const SizedBox(
                 height: 50,
@@ -62,37 +47,10 @@ class _PlayerScreenState extends State<PlayerScreen> {
                       color: Colors.white,
                     ),
                   ),
-                  Column(
-                    children: [
-                      Text(
-                        "Now Playing",
-                        style: Theme.of(context).textTheme.displayMedium,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 4),
-                        child: Text(
-                          widget.song.title,
-                          style: Theme.of(context).textTheme.displaySmall,
-                        ),
-                      ),
-                    ],
-                  ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            isFavorite ? isFavorite = false : isFavorite = true;
-                          });
-                        },
-                        child: Icon(
-                          isFavorite ? Icons.favorite : Icons.favorite_border,
-                          color: isFavorite ? Colors.red : Colors.white,
-                          size: 28,
-                        ),
-                      ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
                         child: GestureDetector(
@@ -107,17 +65,10 @@ class _PlayerScreenState extends State<PlayerScreen> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 30,
-              ),
-              MusicPlayer(
-                song: widget.song,
-              )
             ],
           ),
         ),
       ),
-      bottomNavigationBar: const BottomNavWidget(),
     );
   }
 }

@@ -6,6 +6,7 @@ import 'package:music_app/screens/homescreen.dart';
 import 'package:music_app/screens/loginscreen.dart';
 import 'package:music_app/screens/playerscreen.dart';
 import 'package:music_app/screens/signupscreen.dart';
+import 'package:music_app/services/song_operations.dart';
 
 void main() {
   // var url = '${endPoint}api/users';
@@ -28,35 +29,28 @@ class MyApp extends StatelessWidget {
             secondary: const Color.fromRGBO(22, 22, 22, 1),
           ),
           textTheme: const TextTheme(
-            displayLarge: TextStyle(
-                color: Colors.white, fontSize: 18, fontWeight: FontWeight.w400),
-            displayMedium: TextStyle(
-                color: Colors.white, fontSize: 16, fontWeight: FontWeight.w400),
-          ),
+              displayLarge: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w400),
+              displayMedium: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400),
+              displaySmall: TextStyle(
+                  color: Colors.white,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400)),
           useMaterial3: true,
         ),
         initialRoute: '/',
         routes: {
           '/': (context) => const HomeScreen(),
+          // '/': (context) => const PlayerScreen(),
+
           '/signup': (context) => const SignupScreen(),
           '/login': (context) => const LoginScreen(),
-          '/player': (context) => const PlayerScreen()
+          // '/player': (context) => const PlayerScreen(),
         });
-    //   debugShowCheckedModeBanner: false,
-    //   title: 'Music App',
-    //   theme: ThemeData(
-    //     colorScheme: ColorScheme.fromSeed(
-    //       seedColor: const Color.fromRGBO(84, 19, 138, 1),
-    //     ),
-    //     textTheme: const TextTheme(
-    //       displayLarge: TextStyle(
-    //           color: Colors.white, fontSize: 18, fontWeight: FontWeight.w400),
-    //       displayMedium: TextStyle(
-    //           color: Colors.white, fontSize: 16, fontWeight: FontWeight.w400),
-    //     ),
-    //     useMaterial3: true,
-    //   ),
-    //   home: const HomeScreen(),
-    // );
   }
 }
