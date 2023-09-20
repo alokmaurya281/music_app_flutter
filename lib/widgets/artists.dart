@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:music_app/services/artist_operations.dart';
-import 'package:music_app/services/song_operations.dart';
 import 'package:music_app/widgets/artistwidget.dart';
-import 'package:music_app/widgets/songwidget.dart';
 
 class ArtistList extends StatefulWidget {
   const ArtistList({super.key});

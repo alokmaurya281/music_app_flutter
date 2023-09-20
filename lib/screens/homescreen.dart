@@ -3,9 +3,9 @@ import 'package:music_app/services/song_operations.dart';
 import 'package:music_app/widgets/bottomnavigation.dart';
 import 'package:music_app/widgets/drawer.dart';
 import 'package:music_app/widgets/artists.dart';
-import 'package:music_app/widgets/artistwidget.dart';
+// import 'package:music_app/widgets/artistwidget.dart';
 import 'package:music_app/widgets/searchsongwidget.dart';
-import 'package:music_app/widgets/songwidget.dart';
+// import 'package:music_app/widgets/songwidget.dart';
 import 'package:music_app/widgets/topsongslist.dart';
 
 class HomeScreen extends StatefulWidget {

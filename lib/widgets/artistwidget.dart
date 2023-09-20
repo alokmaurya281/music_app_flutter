@@ -17,7 +17,7 @@ class _ArtistWidgetState extends State<ArtistWidget> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-
+        Navigator.pushNamed(context, '/artists');
       },
       child: Padding(
         padding: const EdgeInsets.only(right: 8),

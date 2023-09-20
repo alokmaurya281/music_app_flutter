@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:music_app/widgets/artistsonglistwidget.dart';
 
 class ArtistScreen extends StatefulWidget {
   const ArtistScreen({super.key});
@@ -31,7 +32,7 @@ class _ArtistScreenState extends State<ArtistScreen> {
           child: Column(
             children: [
               const SizedBox(
-                height: 50,
+                height: 40,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -46,6 +47,10 @@ class _ArtistScreenState extends State<ArtistScreen> {
                       size: 28,
                       color: Colors.white,
                     ),
+                  ),
+                  Text(
+                    "Arijit Singh",
+                    style: Theme.of(context).textTheme.displayLarge,
                   ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
@@ -65,6 +70,65 @@ class _ArtistScreenState extends State<ArtistScreen> {
                   ),
                 ],
               ),
+              const SizedBox(
+                height: 20,
+              ),
+              SizedBox(
+                width: 320,
+                height: 300,
+                child: Card(
+                  elevation: 5,
+                  semanticContainer: true,
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  child: Image.asset(
+                    "assets/images/arijit.jpeg",
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              // SizedBox(
+              //   width: double.infinity,
+              //   height: double.infinity,
+              //   child: ListView.builder(
+              //     primary: false,
+              //     physics: NeverScrollableScrollPhysics(),
+              //     itemCount: 30,
+              //     itemBuilder: (context, index) {
+              //       return ArtistSongListWidget();
+              //     },
+              //   ),
+              // )
+              const Column(
+                children: [
+                  ArtistSongListWidget(),
+                  ArtistSongListWidget(),
+                  ArtistSongListWidget(),
+                  ArtistSongListWidget(),
+                  ArtistSongListWidget(),
+                  ArtistSongListWidget(),
+                  ArtistSongListWidget(),
+                  ArtistSongListWidget(),
+                  ArtistSongListWidget(),
+                  ArtistSongListWidget(),
+                  ArtistSongListWidget(),
+                  ArtistSongListWidget(),
+                  ArtistSongListWidget(),
+                  ArtistSongListWidget(),
+                  ArtistSongListWidget(),
+                  ArtistSongListWidget(),
+                  ArtistSongListWidget(),
+                  ArtistSongListWidget(),
+                  ArtistSongListWidget(),
+                  ArtistSongListWidget(),
+                  ArtistSongListWidget(),
+                ],
+              )
             ],
           ),
         ),

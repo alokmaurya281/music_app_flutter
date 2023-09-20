@@ -1,6 +1,7 @@
 // import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:music_app/screens/artistscreen.dart';
 // import 'package:music_app/api/api_service.dart';
 import 'package:music_app/screens/homescreen.dart';
 import 'package:music_app/screens/loginscreen.dart';
@@ -50,6 +51,8 @@ class MyApp extends StatelessWidget {
 
           '/signup': (context) => const SignupScreen(),
           '/login': (context) => const LoginScreen(),
+          '/artists': (context) => const ArtistScreen(),
+
           // '/player': (context) => const PlayerScreen(),
         });
   }
