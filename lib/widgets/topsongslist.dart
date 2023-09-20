@@ -15,9 +15,10 @@ class _TopSongsListState extends State<TopSongsList> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -40,35 +41,15 @@ class _TopSongsListState extends State<TopSongsList> {
             ],
           ),
         ),
-        const SizedBox(
-          height: 20,
-        ),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Expanded(
-            child: SizedBox(
-              height: 130,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  // ListView.builder(
-                  //   scrollDirection: Axis.horizontal,
-                  //   itemCount: songs.length,
-                  //   itemBuilder: (context, index) {
-                  //     return SongWidget(song: songs[index]);
-                  //   },
-                  // ),
-                  SongWidget(song: songs[0]),
-                  SongWidget(song: songs[0]),
-                  SongWidget(song: songs[0]),
-                  SongWidget(song: songs[0]),
-                  SongWidget(song: songs[0]),
-                  SongWidget(song: songs[0]),
-                  SongWidget(song: songs[0]),
-                  SongWidget(song: songs[1]),
-                ],
-              ),
-            ),
+        SizedBox(
+          height: 130,
+          width: double.infinity,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: songs.length,
+            itemBuilder: (context, index) {
+              return SongWidget(song: songs[index]);
+            },
           ),
         )
       ],

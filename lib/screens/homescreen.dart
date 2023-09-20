@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:music_app/services/song_operations.dart';
 import 'package:music_app/widgets/bottomnavigation.dart';
 import 'package:music_app/widgets/drawer.dart';
+import 'package:music_app/widgets/playlist.dart';
 import 'package:music_app/widgets/playlistwidget.dart';
 import 'package:music_app/widgets/searchsongwidget.dart';
 import 'package:music_app/widgets/songwidget.dart';
@@ -66,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
             end: Alignment.bottomCenter,
           ),
         ),
-        child: SingleChildScrollView(
+        child: const SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 25),
             child: Column(
@@ -91,29 +92,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SearchSongWidget(),
                 SizedBox(
-                  height: 30,
-                ),
-                PlaylistWidget(),
-                SizedBox(
                   height: 20,
                 ),
+                Playlist(),
+                SizedBox(
+                  height: 30,
+                ),
                 TopSongsList(),
-                // Flexible(
-                //   child: SizedBox(
-                //     height: 200,
-                //     child: Row(
-                //       children: [
-                //         ListView.builder(
-                //           scrollDirection: Axis.horizontal,
-                //           itemCount: songs.length,
-                //           itemBuilder: (context, index) {
-                //             return SongWidget(song: songs[index]);
-                //           },
-                //         ),
-                //       ],
-                //     ),
-                //   ),
-                // ),
                 SizedBox(
                   height: 50,
                 ),
