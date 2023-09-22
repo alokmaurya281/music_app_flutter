@@ -1,12 +1,15 @@
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:music_app/models/song_model.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:music_app/providers/musicplayerprovider.dart';
+import 'package:music_app/providers/songprovider.dart';
+import 'package:music_app/screens/playerscreen.dart';
+import 'package:provider/provider.dart';
 
 class MusicPlayer extends StatefulWidget {
-  final Song song;
+  final currentIndex;
   const MusicPlayer({
     super.key,
-    required this.song,
+    required this.currentIndex,
   });
 
   @override
@@ -14,51 +17,165 @@ class MusicPlayer extends StatefulWidget {
 }
 
 class _MusicPlayerState extends State<MusicPlayer> {
-  AudioPlayer audioPlayer = AudioPlayer();
-  bool isPlaying = false;
-  Duration position = const Duration();
-  Duration duration = const Duration();
+  bool isFavorite = false;
+
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
 
   @override
   void initState() {
     super.initState();
-    // isPlaying = true;
-
-    // Listen for changes in audio position and duration
-    // var onAudioPositionChanged;
-    audioPlayer.onPositionChanged.listen((p) => setState(() => position = p));
-    audioPlayer.onDurationChanged.listen((d) => setState(() => duration = d));
   }
 
   @override
   void dispose() {
-    audioPlayer.dispose(); // Release resources when widget is removed
     super.dispose();
   }
 
-  togglePlayer() async {
-    try {
-      if (isPlaying) {
-        await audioPlayer.pause();
-      } else {
-        await audioPlayer.play(UrlSource(widget.song.songUrl));
-      }
-      setState(() {
-        isPlaying = !isPlaying;
-      });
-    } catch (e) {
-      print("Error: $e");
-    }
+  void _initializeNotifications() async {
+    const AndroidInitializationSettings initializationSettingsAndroid =
+        AndroidInitializationSettings('app_icon');
+    // final iOSInitializationSettings initializationSettingsIOS =
+    //     IOSInitializationSettings();
+    const InitializationSettings initializationSettings =
+        InitializationSettings(
+      android: initializationSettingsAndroid,
+      // iOS: initializationSettingsIOS,
+    );
+    await flutterLocalNotificationsPlugin.initialize(initializationSettings);
   }
 
-  String formatDuration(Duration d) {
-    return d.toString().split('.').first.padLeft(8, "0");
+  void _showNotification(String title, String body) async {
+    AndroidNotificationDetails androidPlatformChannelSpecifics =
+        const AndroidNotificationDetails('your channel id', 'your channel name',
+            importance: Importance.max,
+            priority: Priority.high,
+            showWhen: false,
+            ongoing: true,
+            enableVibration: true,
+            autoCancel: false
+
+            // Enable play/pause action
+            );
+
+    NotificationDetails platformChannelSpecifics =
+        NotificationDetails(android: androidPlatformChannelSpecifics);
+    await flutterLocalNotificationsPlugin.show(
+      0,
+      title,
+      body,
+      platformChannelSpecifics,
+    );
   }
+
+  void cancelNotification() {
+    flutterLocalNotificationsPlugin.cancelAll();
+  }
+
+  // togglePlayer() async {
+  //   try {
+  //     if (isPlaying) {
+  //       await audioPlayer.pause();
+  //     } else {
+  //       await audioPlayer.play(UrlSource(widget.song.songUrl));
+  //       String songTitle = widget.song.title;
+  //       String artist = widget.song.artist;
+  //       // String notificationId = widget.song.id;
+
+  //       _showNotification(songTitle, artist);
+  //     }
+  //     setState(() {
+  //       isPlaying = !isPlaying;
+  //     });
+  //   } catch (e) {
+  //     print("Error: $e");
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
+    final musicPlayerProvider = Provider.of<MusicPlayerProvider>(context);
+    final songProvider = Provider.of<SongProvider>(context);
+    final songs = songProvider.songs;
+    musicPlayerProvider.updateCurrentIndex(widget.currentIndex);
+    var index = musicPlayerProvider.currentIndex;
+    // print(index);
+    var currentSong = songs[index];
+    _initializeNotifications();
+    void handleNotification() {
+      musicPlayerProvider.isPlaying
+          ? _showNotification(currentSong.title, currentSong.artist)
+          : cancelNotification();
+    }
+
+    musicPlayerProvider.audioPlayer.onPositionChanged
+        .listen((p) => setState(() => musicPlayerProvider.position = p));
+    musicPlayerProvider.audioPlayer.onDurationChanged
+        .listen((d) => setState(() => musicPlayerProvider.duration = d));
     return Column(
       children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            IconButton(
+              onPressed: () {
+                Navigator.of(context).popAndPushNamed('/');
+              },
+              icon: const Icon(
+                Icons.arrow_back,
+                size: 28,
+                color: Colors.white,
+              ),
+            ),
+            Column(
+              children: [
+                Text(
+                  "Now Playing",
+                  style: Theme.of(context).textTheme.displayMedium,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 4),
+                  child: Text(
+                    currentSong.title,
+                    style: Theme.of(context).textTheme.displaySmall,
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      isFavorite ? isFavorite = false : isFavorite = true;
+                    });
+                  },
+                  child: Icon(
+                    isFavorite ? Icons.favorite : Icons.favorite_border,
+                    color: isFavorite ? Colors.red : Colors.white,
+                    size: 28,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: GestureDetector(
+                    child: const Icon(
+                      Icons.more_vert_outlined,
+                      size: 28,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 30,
+        ),
         SizedBox(
           width: 320,
           height: 300,
@@ -70,7 +187,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
               borderRadius: BorderRadius.circular(15.0),
             ),
             child: Image.network(
-              widget.song.imageUrl,
+              currentSong.imageUrl,
               fit: BoxFit.cover,
             ),
           ),
@@ -88,16 +205,16 @@ class _MusicPlayerState extends State<MusicPlayer> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    (widget.song.title).length > 30
-                        ? widget.song.title.substring(0, 30)
-                        : widget.song.title,
+                    (currentSong.title).length > 30
+                        ? currentSong.title.substring(0, 30)
+                        : currentSong.title,
                     style: const TextStyle(
                         color: Colors.white,
                         fontSize: 18,
                         fontWeight: FontWeight.w400),
                   ),
                   Text(
-                    widget.song.artist,
+                    currentSong.artist,
                     style: const TextStyle(
                         color: Colors.white60,
                         fontSize: 14,
@@ -133,11 +250,12 @@ class _MusicPlayerState extends State<MusicPlayer> {
           height: 5,
         ),
         Slider(
-          value: position.inSeconds.toDouble(),
+          value: musicPlayerProvider.position.inSeconds.toDouble(),
           min: 0.0,
-          max: duration.inSeconds.toDouble(),
+          max: musicPlayerProvider.duration.inSeconds.toDouble(),
           onChanged: (double value) {
-            audioPlayer.seek(Duration(seconds: value.toInt()));
+            musicPlayerProvider.audioPlayer
+                .seek(Duration(seconds: value.toInt()));
           },
         ),
         Padding(
@@ -147,23 +265,35 @@ class _MusicPlayerState extends State<MusicPlayer> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                formatDuration(position),
+                musicPlayerProvider
+                    .formatDuration(musicPlayerProvider.position),
                 style: const TextStyle(color: Colors.white60),
               ),
               Text(
-                formatDuration(duration),
+                musicPlayerProvider
+                    .formatDuration(musicPlayerProvider.duration),
                 style: const TextStyle(color: Colors.white60),
               ),
             ],
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             GestureDetector(
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PlayerScreen(
+                      currentIndex: widget.currentIndex - 1,
+                    ),
+                  ),
+                );
+              },
               child: const Icon(
                 Icons.skip_previous,
                 size: 44,
@@ -171,7 +301,12 @@ class _MusicPlayerState extends State<MusicPlayer> {
               ),
             ),
             GestureDetector(
-              onTap: togglePlayer,
+              onTap: () {
+                musicPlayerProvider.isPlaying
+                    ? musicPlayerProvider.pause()
+                    : musicPlayerProvider.play(currentSong.songUrl);
+                handleNotification();
+              },
               child: Container(
                 width: 70,
                 height: 70,
@@ -186,13 +321,25 @@ class _MusicPlayerState extends State<MusicPlayer> {
                       ),
                     ]),
                 child: Icon(
-                  isPlaying ? Icons.pause : Icons.play_arrow,
+                  musicPlayerProvider.isPlaying
+                      ? Icons.pause
+                      : Icons.play_arrow,
                   color: Colors.black,
                   size: 44,
                 ),
               ),
             ),
             GestureDetector(
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PlayerScreen(
+                      currentIndex: widget.currentIndex + 1,
+                    ),
+                  ),
+                );
+              },
               child: const Icon(
                 Icons.skip_next,
                 size: 44,

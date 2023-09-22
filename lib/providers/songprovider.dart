@@ -7,6 +7,7 @@ class SongProvider with ChangeNotifier {
 
   List<Song> get songs => _songs;
 
+
   Future<void> fetchSongs() async {
     _songs = music.map((json) => Song.fromJson(json)).toList();
   }

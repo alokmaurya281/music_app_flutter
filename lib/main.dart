@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:music_app/providers/artistprovider.dart';
+import 'package:music_app/providers/musicplayerprovider.dart';
 import 'package:music_app/providers/songprovider.dart';
 import 'package:music_app/screens/artistscreen.dart';
 import 'package:music_app/screens/homescreen.dart';
 import 'package:music_app/screens/loginscreen.dart';
 import 'package:music_app/screens/signupscreen.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -16,6 +18,9 @@ void main() {
       ChangeNotifierProvider(
         create: (context) => SongProvider(),
       ),
+      ChangeNotifierProvider(
+        create: (context) => MusicPlayerProvider(),
+      ),
     ],
     child: const MyApp(),
   ));
@@ -26,6 +31,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Permission.notification.request();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Music App',

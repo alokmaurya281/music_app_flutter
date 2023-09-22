@@ -4,9 +4,13 @@ import 'package:music_app/screens/playerscreen.dart';
 
 class SongWidget extends StatefulWidget {
   final Song song;
+  final currentIndex;
+  final songs;
   const SongWidget({
     super.key,
     required this.song,
+    required this.currentIndex,
+    required this.songs,
   });
 
   @override
@@ -26,7 +30,9 @@ class _SongWidgetState extends State<SongWidget> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => PlayerScreen(song: widget.song),
+                  builder: (context) => PlayerScreen(
+                    currentIndex: widget.currentIndex,
+                  ),
                 ),
               );
             },

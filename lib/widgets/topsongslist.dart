@@ -55,7 +55,11 @@ class _TopSongsListState extends State<TopSongsList> {
                     scrollDirection: Axis.horizontal,
                     itemCount: songProvider.songs.length,
                     itemBuilder: (context, index) {
-                      return SongWidget(song: songProvider.songs[index]);
+                      return SongWidget(
+                        song: songProvider.songs[index],
+                        currentIndex: index,
+                        songs: songProvider.songs,
+                      );
                     },
                   ),
                 );

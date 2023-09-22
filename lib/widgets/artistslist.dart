@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:music_app/models/artist_model.dart';
 import 'package:music_app/providers/artistprovider.dart';
 import 'package:music_app/widgets/artistwidget.dart';
 import 'package:provider/provider.dart';
