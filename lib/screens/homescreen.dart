@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:music_app/services/song_operations.dart';
 import 'package:music_app/widgets/bottomnavigation.dart';
 import 'package:music_app/widgets/drawer.dart';
 import 'package:music_app/widgets/artists.dart';
-// import 'package:music_app/widgets/artistwidget.dart';
 import 'package:music_app/widgets/searchsongwidget.dart';
-// import 'package:music_app/widgets/songwidget.dart';
 import 'package:music_app/widgets/topsongslist.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -16,8 +13,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final songs = SongOperations().songs;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,6 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontSize: 14,
                       color: Colors.white60),
                 ),
+                // ArtistWidget(),
                 SizedBox(
                   height: 50,
                 ),

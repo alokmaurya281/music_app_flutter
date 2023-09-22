@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:music_app/services/song_operations.dart';
+import 'package:music_app/providers/songprovider.dart';
 import 'package:music_app/widgets/songwidget.dart';
+import 'package:provider/provider.dart';
 
 class TopSongsList extends StatefulWidget {
   const TopSongsList({super.key});
@@ -10,10 +11,10 @@ class TopSongsList extends StatefulWidget {
 }
 
 class _TopSongsListState extends State<TopSongsList> {
-  final songs = SongOperations().songs;
-
   @override
   Widget build(BuildContext context) {
+    final songProvider = Provider.of<SongProvider>(context);
+    // final List<Song> songs = songProvider.songs;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -41,17 +42,25 @@ class _TopSongsListState extends State<TopSongsList> {
             ],
           ),
         ),
-        SizedBox(
-          height: 130,
-          width: double.infinity,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: songs.length,
-            itemBuilder: (context, index) {
-              return SongWidget(song: songs[index]);
-            },
-          ),
-        )
+        FutureBuilder(
+            future: songProvider.fetchSongs(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return CircularProgressIndicator.adaptive();
+              } else {
+                return SizedBox(
+                  height: 130,
+                  width: double.infinity,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: songProvider.songs.length,
+                    itemBuilder: (context, index) {
+                      return SongWidget(song: songProvider.songs[index]);
+                    },
+                  ),
+                );
+              }
+            })
       ],
     );
   }

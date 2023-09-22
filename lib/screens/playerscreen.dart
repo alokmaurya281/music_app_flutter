@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:music_app/models/song_model.dart';
-import 'package:music_app/services/song_operations.dart';
 import 'package:music_app/widgets/bottomnavigation.dart';
 import 'package:music_app/widgets/musicplayer.dart';
 
@@ -18,9 +17,6 @@ class PlayerScreen extends StatefulWidget {
 
 class _PlayerScreenState extends State<PlayerScreen> {
   bool isFavorite = false;
-  // final Song song =;
-  // final List songs = SongOperations().songs;
-  final songs = SongOperations().songs;
   @override
   Widget build(BuildContext context) {
     // print(songs);

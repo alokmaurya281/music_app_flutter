@@ -22,6 +22,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
   @override
   void initState() {
     super.initState();
+    // isPlaying = true;
 
     // Listen for changes in audio position and duration
     // var onAudioPositionChanged;
@@ -35,7 +36,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
     super.dispose();
   }
 
-  void togglePlayer() async {
+  togglePlayer() async {
     try {
       if (isPlaying) {
         await audioPlayer.pause();
@@ -68,7 +69,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15.0),
             ),
-            child: Image.asset(
+            child: Image.network(
               widget.song.imageUrl,
               fit: BoxFit.cover,
             ),
@@ -179,7 +180,6 @@ class _MusicPlayerState extends State<MusicPlayer> {
                     borderRadius: BorderRadius.circular(50),
                     boxShadow: [
                       BoxShadow(
-                        // color: Theme.colo
                         blurRadius: 15,
                         blurStyle: BlurStyle.outer,
                         color: Theme.of(context).colorScheme.primary,

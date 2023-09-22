@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:music_app/models/artist_model.dart';
 
 class ArtistWidget extends StatefulWidget {
-  final Artist artist;
+  final String imageUrl;
+  final String name;
+  final String totalTracks;
+
   const ArtistWidget({
     super.key,
-    required this.artist,
+    required this.imageUrl,
+    required this.name,
+    required this.totalTracks,
   });
 
   @override
@@ -33,8 +37,9 @@ class _ArtistWidgetState extends State<ArtistWidget> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15.0),
                 ),
-                child: Image.asset(
-                  widget.artist.imageUrl,
+                child: Image.network(
+                  // widget.artist.imageUrl,
+                  widget.imageUrl,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -58,7 +63,7 @@ class _ArtistWidgetState extends State<ArtistWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        widget.artist.name,
+                        widget.name,
                         style: const TextStyle(
                             color: Colors.white,
                             fontSize: 12,
@@ -72,7 +77,7 @@ class _ArtistWidgetState extends State<ArtistWidget> {
                             color: Colors.white,
                           ),
                           Text(
-                            '${widget.artist.totalSongs} tracks',
+                            '${widget.totalTracks} tracks',
                             style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 10,

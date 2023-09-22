@@ -16,7 +16,6 @@ class SongWidget extends StatefulWidget {
 class _SongWidgetState extends State<SongWidget> {
   @override
   Widget build(BuildContext context) {
-    // print(widget.song);
     return SizedBox(
       width: 100,
       child: Column(
@@ -42,7 +41,7 @@ class _SongWidgetState extends State<SongWidget> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15.0),
                 ),
-                child: Image.asset(
+                child: Image.network(
                   widget.song.imageUrl,
                   fit: BoxFit.cover,
                 ),
@@ -53,9 +52,10 @@ class _SongWidgetState extends State<SongWidget> {
             child: Text(
               widget.song.title,
               style: const TextStyle(
-                  fontSize: 12,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w400),
+                fontSize: 12,
+                color: Colors.white,
+                fontWeight: FontWeight.w400,
+              ),
               softWrap: true,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
