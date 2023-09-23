@@ -121,12 +121,6 @@ class _ArtistScreenState extends State<ArtistScreen> {
                   ArtistSongListWidget(),
                   ArtistSongListWidget(),
                   ArtistSongListWidget(),
-                  ArtistSongListWidget(),
-                  ArtistSongListWidget(),
-                  ArtistSongListWidget(),
-                  ArtistSongListWidget(),
-                  ArtistSongListWidget(),
-                  ArtistSongListWidget(),
                 ],
               )
             ],

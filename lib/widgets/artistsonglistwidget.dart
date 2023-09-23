@@ -8,10 +8,10 @@ class ArtistSongListWidget extends StatelessWidget {
     return Container(
       height: 80,
       width: double.infinity,
-      margin: EdgeInsets.all(8),
-      padding: EdgeInsets.all(4),
+      margin: const EdgeInsets.all(8),
+      padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(
-        color: const Color.fromRGBO(84, 19, 138, 1),
+        color: const Color.fromRGBO(52, 9, 112, 0.408),
         borderRadius: BorderRadius.circular(15),
       ),
       child: ListTile(
@@ -24,7 +24,7 @@ class ArtistSongListWidget extends StatelessWidget {
           "Tum hi ho",
           style: Theme.of(context).textTheme.displaySmall,
         ),
-        trailing: Icon(
+        trailing: const Icon(
           Icons.play_arrow,
           color: Colors.white,
           size: 34,

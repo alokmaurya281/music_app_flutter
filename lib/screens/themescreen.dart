@@ -25,7 +25,7 @@ class _ThemeScreenChangerState extends State<ThemeScreenChanger> {
               Theme.of(context).colorScheme.primary,
               Theme.of(context).colorScheme.primary,
               // Color.fromRGBO(122, 81, 226, 1),
-              Theme.of(context).colorScheme.secondary,
+              Theme.of(context).colorScheme.primary,
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,

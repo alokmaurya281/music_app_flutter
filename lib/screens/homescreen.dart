@@ -75,8 +75,8 @@ class _HomeScreenState extends State<HomeScreen> {
           gradient: LinearGradient(
             colors: [
               Theme.of(context).colorScheme.primary,
-              Theme.of(context).colorScheme.secondary,
-              Theme.of(context).colorScheme.secondary
+              Theme.of(context).colorScheme.primary,
+              Theme.of(context).colorScheme.primary
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
