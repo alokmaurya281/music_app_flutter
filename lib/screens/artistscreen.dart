@@ -15,14 +15,14 @@ class _ArtistScreenState extends State<ArtistScreen> {
       body: Container(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
         height: double.infinity,
-        decoration: const BoxDecoration(
-          color: Color.fromRGBO(122, 81, 226, 1),
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.primary,
           gradient: LinearGradient(
             colors: [
-              Color.fromRGBO(122, 81, 226, 1),
-              Color.fromRGBO(22, 22, 22, 1),
+              Theme.of(context).colorScheme.primary,
+              Theme.of(context).colorScheme.primary,
               // Color.fromRGBO(122, 81, 226, 1),
-              Color.fromRGBO(22, 22, 22, 1),
+              Theme.of(context).colorScheme.primary,
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,

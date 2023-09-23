@@ -11,7 +11,7 @@ class ArtistSongListWidget extends StatelessWidget {
       margin: EdgeInsets.all(8),
       padding: EdgeInsets.all(4),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primary,
+        color: const Color.fromRGBO(84, 19, 138, 1),
         borderRadius: BorderRadius.circular(15),
       ),
       child: ListTile(

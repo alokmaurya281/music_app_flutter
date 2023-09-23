@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:music_app/providers/artistprovider.dart';
 import 'package:music_app/providers/musicplayerprovider.dart';
 import 'package:music_app/providers/songprovider.dart';
+import 'package:music_app/providers/themeprovider.dart';
 import 'package:music_app/screens/artistscreen.dart';
 import 'package:music_app/screens/homescreen.dart';
 import 'package:music_app/screens/loginscreen.dart';
@@ -12,6 +13,9 @@ import 'package:provider/provider.dart';
 void main() {
   runApp(MultiProvider(
     providers: [
+      ChangeNotifierProvider(
+        create: (context) => ThemeProvider(),
+      ),
       ChangeNotifierProvider(
         create: (context) => ArtistProvider(),
       ),
@@ -26,43 +30,76 @@ void main() {
   ));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
   Widget build(BuildContext context) {
     Permission.notification.request();
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Music App',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color.fromRGBO(84, 19, 138, 1),
-          primary: const Color.fromRGBO(122, 81, 226, 1),
-          secondary: const Color.fromRGBO(22, 22, 22, 1),
+    return Builder(builder: (context) {
+      final themeProvider = Provider.of<ThemeProvider>(context);
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Music App',
+        themeMode: themeProvider.themeMode,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color.fromRGBO(84, 19, 138, 1),
+            primary: const Color.fromRGBO(122, 81, 226, 1),
+            secondary: const Color.fromRGBO(22, 22, 22, 1),
+          ),
+          textTheme: const TextTheme(
+              displayLarge: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w400),
+              displayMedium: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400),
+              displaySmall: TextStyle(
+                  color: Colors.white,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400)),
+          useMaterial3: true,
         ),
-        textTheme: const TextTheme(
-            displayLarge: TextStyle(
-                color: Colors.white, fontSize: 18, fontWeight: FontWeight.w400),
-            displayMedium: TextStyle(
-                color: Colors.white, fontSize: 16, fontWeight: FontWeight.w400),
-            displaySmall: TextStyle(
-                color: Colors.white,
-                fontSize: 14,
-                fontWeight: FontWeight.w400)),
-        useMaterial3: true,
-      ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const HomeScreen(),
-        // '/': (context) => const PlayerScreen(),
+        darkTheme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color.fromRGBO(84, 19, 138, 1),
+            primary: const Color.fromRGBO(22, 22, 22, 1),
+            secondary: const Color.fromRGBO(22, 22, 22, 1),
+          ),
+          textTheme: const TextTheme(
+              displayLarge: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w400),
+              displayMedium: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400),
+              displaySmall: TextStyle(
+                  color: Colors.white,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400)),
+        ),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => const HomeScreen(),
+          // '/': (context) => const PlayerScreen(),
 
-        '/signup': (context) => const SignupScreen(),
-        '/login': (context) => const LoginScreen(),
-        '/artists': (context) => const ArtistScreen(),
+          '/signup': (context) => const SignupScreen(),
+          '/login': (context) => const LoginScreen(),
+          '/artists': (context) => const ArtistScreen(),
 
-        // '/player': (context) => const PlayerScreen(),
-      },
-    );
+          // '/player': (context) => const PlayerScreen(),
+        },
+      );
+    });
   }
 }

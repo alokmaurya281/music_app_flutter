@@ -60,7 +60,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 ),
                 ListTile(
                   leading: const Icon(Icons.branding_watermark_sharp),
-                  title: const Text('Brands'),
+                  title: const Text('Change Theme'),
                   onTap: () {},
                   // iconColor: Colors.white,
                   // textColor: Colors.white,

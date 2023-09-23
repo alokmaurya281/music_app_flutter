@@ -250,6 +250,8 @@ class _MusicPlayerState extends State<MusicPlayer> {
           height: 5,
         ),
         Slider(
+          inactiveColor: Colors.white60,
+          activeColor: const Color.fromRGBO(84, 19, 138, 1),
           value: musicPlayerProvider.position.inSeconds.toDouble(),
           min: 0.0,
           max: musicPlayerProvider.duration.inSeconds.toDouble(),
@@ -315,16 +317,15 @@ class _MusicPlayerState extends State<MusicPlayer> {
                     borderRadius: BorderRadius.circular(50),
                     boxShadow: [
                       BoxShadow(
-                        blurRadius: 15,
-                        blurStyle: BlurStyle.outer,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
+                          blurRadius: 15,
+                          blurStyle: BlurStyle.outer,
+                          color: const Color.fromRGBO(84, 19, 138, 1)),
                     ]),
                 child: Icon(
                   musicPlayerProvider.isPlaying
                       ? Icons.pause
                       : Icons.play_arrow,
-                  color: Colors.black,
+                  color: Colors.white,
                   size: 44,
                 ),
               ),

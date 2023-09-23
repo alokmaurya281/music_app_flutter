@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:music_app/screens/themescreen.dart';
 import 'package:music_app/widgets/bottomnavigation.dart';
 import 'package:music_app/widgets/drawer.dart';
 import 'package:music_app/widgets/artists.dart';
@@ -26,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: const DrawerWidget(),
       appBar: AppBar(
         // toolbarHeight: 50,
-        backgroundColor: const Color.fromRGBO(122, 81, 226, 1),
+        backgroundColor: Theme.of(context).colorScheme.primary,
         elevation: 0,
         scrolledUnderElevation: 0,
         leading: GestureDetector(
@@ -42,13 +43,27 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-        actions: const [
-          Padding(
+        actions: [
+          const Padding(
             padding: EdgeInsets.only(right: 15),
             child: Icon(
               Icons.search,
               color: Colors.white60,
               size: 28,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 15),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => ThemeScreenChanger()));
+              },
+              child: const Icon(
+                Icons.dark_mode,
+                color: Colors.white60,
+                size: 28,
+              ),
             ),
           ),
         ],
