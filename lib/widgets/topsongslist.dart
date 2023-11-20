@@ -46,7 +46,7 @@ class _TopSongsListState extends State<TopSongsList> {
             future: songProvider.fetchSongs(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return CircularProgressIndicator.adaptive();
+                return const CircularProgressIndicator.adaptive();
               } else {
                 return SizedBox(
                   height: 130,

@@ -6,6 +6,7 @@ import 'package:music_app/screens/playerscreen.dart';
 import 'package:provider/provider.dart';
 
 class MusicPlayer extends StatefulWidget {
+  // ignore: prefer_typing_uninitialized_variables
   final currentIndex;
   const MusicPlayer({
     super.key,
@@ -240,7 +241,7 @@ class _MusicPlayerState extends State<MusicPlayer> {
                         color: Colors.white60,
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ],
@@ -315,11 +316,11 @@ class _MusicPlayerState extends State<MusicPlayer> {
                 decoration: BoxDecoration(
                     color: Theme.of(context).colorScheme.primary,
                     borderRadius: BorderRadius.circular(50),
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                           blurRadius: 15,
                           blurStyle: BlurStyle.outer,
-                          color: const Color.fromRGBO(84, 19, 138, 1)),
+                          color: Color.fromRGBO(84, 19, 138, 1)),
                     ]),
                 child: Icon(
                   musicPlayerProvider.isPlaying

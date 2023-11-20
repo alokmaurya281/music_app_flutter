@@ -58,6 +58,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                   scrollDirection: Axis.horizontal,
                   itemCount: songProvider.songs.length,
                   onPageChanged: (index) {
+                    musicPlayerProvider.seek(Duration.zero);
                     musicPlayerProvider.updateCurrentIndex(index);
                   },
                   itemBuilder: (context, index) {

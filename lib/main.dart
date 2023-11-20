@@ -53,7 +53,7 @@ class _MyAppState extends State<MyApp> {
             primary: const Color.fromRGBO(122, 81, 226, 1),
             secondary: const Color.fromRGBO(22, 22, 22, 1),
           ),
-          bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
             backgroundColor: Color.fromRGBO(52, 9, 112, 0.408),
             selectedItemColor: Color.fromARGB(255, 255, 255, 255),
             unselectedItemColor: Color.fromARGB(255, 160, 160, 161),
@@ -79,7 +79,7 @@ class _MyAppState extends State<MyApp> {
             primary: const Color.fromRGBO(22, 22, 22, 1),
             secondary: const Color.fromRGBO(22, 22, 22, 1),
           ),
-          bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
             backgroundColor: Color.fromRGBO(52, 9, 112, 0.408),
             selectedItemColor: Color.fromARGB(255, 255, 255, 255),
             unselectedItemColor: Color.fromARGB(255, 160, 160, 161),

@@ -57,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: GestureDetector(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => ThemeScreenChanger()));
+                    builder: (context) => const ThemeScreenChanger()));
               },
               child: const Icon(
                 Icons.dark_mode,

@@ -4,7 +4,9 @@ import 'package:music_app/screens/playerscreen.dart';
 
 class SongWidget extends StatefulWidget {
   final Song song;
+  // ignore: prefer_typing_uninitialized_variables
   final currentIndex;
+  // ignore: prefer_typing_uninitialized_variables
   final songs;
   const SongWidget({
     super.key,
